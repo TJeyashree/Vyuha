@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Marcellus&family=Inter:wght@400;500;600&family=Noto+Sans+Tamil:wght@400;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-saffron: #F4A623;
+  --color-gold: #D8A642;
+  --color-ivory: #FFF8E8;
+  --color-parchment: #F0DFC0;
+  --color-teal: #087F8C;
+  --color-peacock: #1769AA;
+  --color-lotus: #E58AA8;
+  --color-vermilion: #C94735;
+  --color-leaf: #668653;
+  --color-maroon: #792E3A;
+  --color-ink: #4A3613;
+  --font-display: 'Marcellus', serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-tamil: 'Noto Sans Tamil', serif;
+  --font-deva: 'Noto Serif Devanagari', serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: #FFF8E8;
+  color: #40301a;
+  overflow-x: hidden;
+}
+
+::selection { background: #F4A623; color: #4A1C10; }
+
+/* Parchment / manuscript surfaces */
+.parchment {
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(244,166,35,.14), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(8,127,140,.10), transparent 50%),
+    linear-gradient(180deg, #FFFCF2 0%, #FFF8E8 45%, #F6E9CC 100%);
+}
+.goldline {
+  background: linear-gradient(90deg, transparent, #D8A642 15%, #F4A623 50%, #D8A642 85%, transparent);
+}
+.gold-text {
+  background: linear-gradient(100deg, #B4761B, #F4A623 35%, #FBE2A0 50%, #D8A642 70%, #9E5F17);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.card-ornate {
+  position: relative;
+  background: linear-gradient(170deg, rgba(255,252,242,.97), rgba(245,230,202,.94));
+  border: 1px solid rgba(216,166,66,.55);
+  box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 18px 40px -24px rgba(90,52,16,.5);
+}
+.focusable:focus-visible {
+  outline: 3px solid #1769AA;
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Animations */
+@keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes drift { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes spin-slow { to { transform: rotate(360deg) } }
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+@keyframes rise { from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:translateY(0)} }
+@keyframes dust { 0%{transform:translate3d(0,0,0);opacity:0} 10%{opacity:.8} 100%{transform:translate3d(40px,-120px,0);opacity:0} }
+
+.anim-float { animation: floaty 7s ease-in-out infinite; }
+.anim-spin-slow { animation: spin-slow 90s linear infinite; }
+.anim-rise { animation: rise .7s cubic-bezier(.22,1,.36,1) both; }
+.anim-drift { animation: drift 60s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  html { scroll-behavior: auto; }
+}
+.reduced * { animation: none !important; transition: none !important; }
+
+.tamil { font-family: var(--font-tamil); }
+.deva { font-family: var(--font-deva); line-height: 2; }
